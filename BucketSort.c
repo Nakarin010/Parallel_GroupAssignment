@@ -94,7 +94,6 @@ int* bucket_sort(int length,int num_threads){
     double end = omp_get_wtime(); 
     double execution_time = end - start;
     // Example: Print sorted buckets (only Bucket A for brevity)
-// printf("\n");
 //     printf("\n");
     // printf("Merged and sorted array: ");
     // for (int i = 0; i < index; i++) {
@@ -154,7 +153,6 @@ int main(void){
 void fill_ran(int array[], int length,int min,int max)
 {
     int new_random;
-    // bool* unique = (bool*)calloc(max - min + 1, sizeof(bool));
     for(int i=0;i<length;i++){
         array[i] = (rand() % (max - min +1)) + min;
     }
