@@ -18,5 +18,3 @@ for gcc:
 
 for clang:
 <pre><code>clang -fopenmp bucket.c -o bucketsort</code></pre>
-
-# Parallely
