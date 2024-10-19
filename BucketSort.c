@@ -8,7 +8,7 @@
 // 0-9 buckets = 10 buckets
 // 0-9999 the range of the numbers in each bucket
 // number threads are 1 4 8 12 16
-void merge();
+void insertion_sort(int arr[], int n);
 void fill_ran(int array[], int length,int min,int max);
 int compare (const void * a, const void * b);// for the qsort built-in function
 int* bucket_sort(int length,int num_threads){
@@ -83,8 +83,13 @@ int* bucket_sort(int length,int num_threads){
  //sorting the individual buckets and utilize the OpenMP Threads
     #pragma omp parallel for num_threads(num_threads)
     for(int i=0;i<BUCKETNUM;i++){
+        if (bucket_count[i] < 1000) {
+        insertion_sort(bucket[i], bucket_count[i]);
+    } else {
         qsort(bucket[i], bucket_count[i], sizeof(int), compare);
-    }int index = 0;
+    }
+    }
+    int index = 0;
     for (int i = 0; i < BUCKETNUM; i++) {
         for (int j = 0; j < bucket_count[i]; j++) {
             final[index++] = bucket[i][j];
@@ -159,4 +164,15 @@ void fill_ran(int array[], int length,int min,int max)
 int compare(const void *a, const void *b)
 {
     return (*(int*)a - *(int*)b);
+}
+void insertion_sort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
 }
