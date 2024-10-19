@@ -10,7 +10,6 @@
 // number threads are 1 4 8 12 16
 void merge();
 void fill_ran(int array[], int length,int min,int max);
-void sortindi (int array[]);
 int compare (const void * a, const void * b);// for the qsort built-in function
 int* bucket_sort(int length,int num_threads){
 
